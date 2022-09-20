@@ -3,7 +3,8 @@ package server.api;
 import org.springframework.web.bind.annotation.*;
 import server.business.Employee;
 import server.service.EmployeeService;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import java.util.List;
 
 @RequestMapping("api/employee")
@@ -18,11 +19,13 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public void addEmployee(@RequestBody Employee employee){
+    public ResponseEntity<String> addEmployee(@RequestBody Employee employee){
         if(!employee.getEmail().contains("@")){
-            throw  new IllegalArgumentException("Email is not valid");
+             return new ResponseEntity<>("Email is not valid", HttpStatus.BAD_REQUEST);
+
         }
         employeeService.insertEmployee((employee));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping
@@ -32,12 +35,12 @@ public class EmployeeController {
     public Employee getEmployeeByEmail(@RequestParam(name = "email") String email){return employeeService.getEmployeeByEmail(email);}
 
     @PutMapping
-    public int updateEmployee(@RequestBody Employee employee){
-        Employee emp = employee;
+    public ResponseEntity<String> updateEmployee(@RequestBody Employee employee){
         if(!employee.getEmail().contains("@")){
-            throw  new IllegalStateException("Email is not valid");
+            return new ResponseEntity<>("Email is not valid",HttpStatus.BAD_REQUEST);
         }
-        return employeeService.updateEmployee(employee);
+        int rowUpdated =  employeeService.updateEmployee(employee);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

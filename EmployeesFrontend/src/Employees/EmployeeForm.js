@@ -38,14 +38,15 @@ function EmployeeForm(props) {
       })
         .then((resp) => {
           if(resp.status === 200){
-            window.location.reload(false);
+            props.getAll();
+            props.viewForm();
           }
 
           else{
-            alert("An error occured");
+            return resp.text().then((e)=>{alert("Error! " + e)});
           }
           
-        })
+        }).catch(e=>console.error("error!",e));
   }
 
   return (

@@ -15,7 +15,6 @@ function EmloyeeItem(props) {
   const viewForm = () => {setShowForm((prevState) => !prevState)}
 
   const updateEmployee = (emp) => {
-    console.log("here");
     fetch(API, {
       method: "PUT",
       headers: {
@@ -29,10 +28,10 @@ function EmloyeeItem(props) {
         set_email(emp.email);
       }
       else{
-        alert("An error occured");
+        return resp.text().then((e)=>{alert("Error! " + e)});
       }
       
-    })
+    }).catch(e=>console.error("error!",e));
 };
 
   return (

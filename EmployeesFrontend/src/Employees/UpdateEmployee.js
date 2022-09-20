@@ -1,8 +1,5 @@
 import { useState } from "react";
-import config from "../config.js"
 import "./EmployeeForm.css";
-
-const API = config.api;
 
 function UpdateEmployee(props) {
   const [f_name, setFirstName] = useState(props.f_name);

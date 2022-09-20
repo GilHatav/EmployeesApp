@@ -26,7 +26,8 @@ function EmployeesScreen(props) {
         })
         .then((data) => {
           setEmployees(data);
-        });
+        })
+        .catch(e=>console.error("error!",e));
     };
     getAllEmployees();
   }, []);
@@ -45,7 +46,7 @@ function EmployeesScreen(props) {
             })
             .then((data) => {
               setEmployees([data]);
-            });
+            }).catch(e=>console.error("error!",e));
     }
     const getAll = () => {
         fetch(API, {
@@ -59,12 +60,12 @@ function EmployeesScreen(props) {
           })
           .then((data) => {
             setEmployees(data);
-          });
+          }).catch(e=>console.error("error!",e));
       };
       
     return (
         <div>
-            {showForm ? <EmployeeForm submitBtnName={"Add Employee"} viewForm={viewForm} getAll={getAll}/>: <NewEmployee viewForm={viewForm}/>}  
+            {showForm ? <EmployeeForm submitBtnName={"Add Employee"}  viewForm={viewForm} getAll={getAll}/>: <NewEmployee viewForm={viewForm}/>}  
             <SearchEmployee submitFunc={getEmployee} getAll={getAll}></SearchEmployee>           
             <EmployeesList employees={employees} />
         </div>
