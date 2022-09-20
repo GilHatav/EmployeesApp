@@ -19,6 +19,9 @@ public class EmployeeController {
 
     @PostMapping
     public void addEmployee(@RequestBody Employee employee){
+        if(!employee.getEmail().contains("@")){
+            throw  new IllegalArgumentException("Email is not valid");
+        }
         employeeService.insertEmployee((employee));
     }
 
@@ -31,6 +34,9 @@ public class EmployeeController {
     @PutMapping
     public int updateEmployee(@RequestBody Employee employee){
         Employee emp = employee;
+        if(!employee.getEmail().contains("@")){
+            throw  new IllegalStateException("Email is not valid");
+        }
         return employeeService.updateEmployee(employee);
     }
 

@@ -36,8 +36,15 @@ function EmployeeForm(props) {
           }
         )
       })
-        .then(() => {
-          window.location.reload(false);
+        .then((resp) => {
+          if(resp.status === 200){
+            window.location.reload(false);
+          }
+
+          else{
+            alert("An error occured");
+          }
+          
         })
   }
 

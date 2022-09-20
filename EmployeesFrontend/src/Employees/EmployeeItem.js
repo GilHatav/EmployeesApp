@@ -22,10 +22,16 @@ function EmloyeeItem(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(emp)
-    }).then(() => {
-      set_firstName(emp.f_name);
-      set_lastName(emp.l_name);
-      set_email(emp.email);
+    }).then((resp) => {
+      if(resp.status === 200){
+        set_firstName(emp.f_name);
+        set_lastName(emp.l_name);
+        set_email(emp.email);
+      }
+      else{
+        alert("An error occured");
+      }
+      
     })
 };
 
