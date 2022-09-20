@@ -1,0 +1,22 @@
+.employee-item {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0.5rem;
+    width: 40rem;
+    margin: 1rem 0;
+    background-color: #4b4b4b;
+  }
+
+  .update_button{
+    font: inherit;
+    cursor: pointer;
+    border: 1px solid #40005d;
+    background-color: rgb(167, 167, 168);
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+  }
+
+
+ 
